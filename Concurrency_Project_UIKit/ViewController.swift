@@ -47,7 +47,6 @@ extension ViewController {
 
 extension ViewController {
     
-    //MARK: - classic mode
     func fetchImage() {
         let queue = DispatchQueue.global(qos: .utility)
         queue.async {
@@ -59,7 +58,6 @@ extension ViewController {
         }
     }
     
-    //MARK: - async func URLSession
     func fetchImage1() {
 //        let task = URLSession.shared.dataTask(with: imageURL){data, response, error} in
 //        if let imageData = data {
@@ -70,7 +68,6 @@ extension ViewController {
 //        task.resume()
     }
     
-    //MARK: - DispatchWorkItem
     func fetchImage2() {
         var data: Data?
         let queue = DispatchQueue.global(qos: .utility)
@@ -85,7 +82,6 @@ extension ViewController {
         }
     }
     
-    //MARK: -
     func asyncLoadImage(
         imageURL: URL,
         runQueue: DispatchQueue,
@@ -101,7 +97,6 @@ extension ViewController {
             }
         }
     
-    //MARK: -
     func fetchImage3() {
         asyncLoadImage(
             imageURL: imageURL,
