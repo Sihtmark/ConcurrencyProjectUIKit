@@ -12,6 +12,10 @@ class Queue: UIViewController {
     let mySerialQueue        = DispatchQueue(label: "mySerialQueque", qos: .background)
     let yourConcurrentDefaultQueue  = DispatchQueue(label: "yourSerialQueue", qos: .default, attributes: [.concurrent, .initiallyInactive])
     
+    let myDispatchWorkItem = DispatchWorkItem(qos: .userInteractive, flags: .enforceQoS) {
+        print("3 - yourSerialQueue + dispatchWorkItem .userInteractive .enforceQoS")
+    }
+    
     let stackView = UIStackView()
     let label = UILabel()
     
@@ -29,11 +33,7 @@ class Queue: UIViewController {
             print("2.2 - utilityQueue")
         }
         
-        yourConcurrentDefaultQueue.async {
-            print("3 - yourConcurrentQueue .activate")
-//            self.style()
-//            self.layout()
-        }
+        yourConcurrentDefaultQueue.async(execute: myDispatchWorkItem)
         
         mySerialQueue.asyncAfter(deadline: .now() + 1.2, qos: .userInteractive) {
             print("4 - mySerialQueue + 1.2")
